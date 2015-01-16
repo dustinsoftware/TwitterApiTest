@@ -34,7 +34,7 @@ public class Program
         client.Authenticator = null;
 
         var searchRequest = new RestRequest("1.1/search/tweets.json");
-        searchRequest.AddParameter("q", args[0] ?? "asp.net vNext");
+        searchRequest.AddParameter("q", args.Length == 0 ? "asp.net vNext" : args[0]);
         searchRequest.AddParameter("Authorization", "Bearer \{token.AccessToken}", ParameterType.HttpHeader);
         var searchResponse = client.Execute<TwitterSearchResponse>(searchRequest);
 
