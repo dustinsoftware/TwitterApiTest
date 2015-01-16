@@ -1,0 +1,14 @@
+{
+  "dependencies": {
+    "RestSharp": "105.0.1",
+    "Newtonsoft.Json": "6.0.8"
+  },
+  "frameworks": {
+    "aspnet50": {},
+    "aspnetcore50": {
+      "dependencies": {
+        "System.Console": "4.0.0-beta-*"
+      }
+    }
+  }
+}
