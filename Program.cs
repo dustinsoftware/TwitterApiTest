@@ -21,7 +21,6 @@ public class Program
 
         string bearer;
 
-
         var authRequest = new RestRequest("oauth2/token", Method.POST);
         client.Authenticator = new HttpBasicAuthenticator(settings.ConsumerToken,settings.ConsumerSecret);
         authRequest.AddParameter("grant_type", "client_credentials");
