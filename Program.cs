@@ -27,7 +27,7 @@ public class Program
         var authResponse = client.Execute(authRequest);
 
         if (authResponse.StatusCode != HttpStatusCode.OK)
-            throw new InvalidOperationException("A token was not obtained successfully. Response: \{authResponse.Content}");
+            throw new InvalidOperationException($"A token was not obtained successfully. Response: {authResponse.Content}");
 
         var token = JsonConvert.DeserializeObject<OAuthToken>(authResponse.Content);
 
@@ -35,15 +35,15 @@ public class Program
 
         var searchRequest = new RestRequest("1.1/search/tweets.json");
         searchRequest.AddParameter("q", args.Length == 0 ? "asp.net vNext" : args[0]);
-        searchRequest.AddParameter("Authorization", "Bearer \{token.AccessToken}", ParameterType.HttpHeader);
+        searchRequest.AddParameter("Authorization", $"Bearer {token.AccessToken}", ParameterType.HttpHeader);
         var searchResponse = client.Execute<TwitterSearchResponse>(searchRequest);
 
         if (searchResponse.StatusCode != HttpStatusCode.OK)
-            throw new InvalidOperationException("An obtained token was rejected. Response: \{searchResponse.Content}");
+            throw new InvalidOperationException($"An obtained token was rejected. Response: {searchResponse.Content}");
 
         foreach (var tweet in searchResponse?.Data?.statuses)
         {
-            Console.WriteLine("Tweet: \{tweet.text}");
+            Console.WriteLine($"Tweet: {tweet.text}");
         }
     }
 
